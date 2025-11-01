@@ -1,0 +1,19 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.jss"
+  },
+  "keywords": [
+    "Node",
+    "JS"
+  ],
+  "author": "Appaso Bhanuse",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
