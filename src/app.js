@@ -1,12 +1,15 @@
 const useExpress = require("express");
 
 const app = useExpress();
+const { userAuth } = require("./middlewares/auth")
 
 app.listen(3000, () => {
   console.log('listening on 3000 port')
 });
 
 // app.get, delete, post, patch callback functions are the route handlers
+
+//app.use('/', userAuth)
 
 app.get("/users", (req, res) => {
   res.send({ name: "Ashok", age: 32 })
@@ -31,12 +34,13 @@ app.use("/users", (req, res) => {
 })
 
 app.use("/login", (req, res) => {
+  throw new error
   res.send("login page")
 })
 
 
 // multi routing use next
-app.get("/userprofile", (req, res, next) => {
+app.get("/userprofile", userAuth, (req, res, next) => {
   console.log("route 1")
   next()
   // res.send("Route 1")
@@ -50,4 +54,11 @@ app.get("/userprofile", (req, res, next) => {
     console.log("route 3")
     res.send("Route 3")
   }
-)
+);
+
+app.use("/", (error, req, res, next) => {
+  if (error) {
+    res.status(500).send("Something went wrong")
+  }
+})
+
