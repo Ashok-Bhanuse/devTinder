@@ -35,7 +35,7 @@ app.use("/login", (req, res) => {
 })
 
 
-// multi routing
+// multi routing use next
 app.get("/userprofile", (req, res, next) => {
   console.log("route 1")
   next()
