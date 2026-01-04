@@ -24,7 +24,18 @@ const validateProfileData = (req) => {
   return Object.keys(req.body).every((field) => allowedFields.includes(field));
 };
 
+const validatePasswordChangeData = (req) => {
+  const { newPassword, oldPassword } = req.body;
+
+  if (newPassword === oldPassword) {
+    throw new Error("Old password and new password should not be same!");
+  } else if (!validator.isStrongPassword(req.body.newPassword)) {
+    throw new Error("Password is not strong");
+  }
+};
+
 module.exports = {
   validationSignupData,
   validateProfileData,
+  validatePasswordChangeData,
 };

@@ -3,6 +3,7 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 const User = require("../models/users");
+const { validationSignupData } = require("../utils/validation");
 
 router.post("/user/signup", async (req, res) => {
   try {
