@@ -28,7 +28,10 @@ const userSchema = mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["Male", "Female", "Other"],
+    enum: {
+      values: ["Male", "Female", "Other"],
+      message: `{VALUE} is incorrect gender`,
+    },
   },
   skills: {
     type: Array,
